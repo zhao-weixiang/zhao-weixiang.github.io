@@ -1,9 +1,9 @@
 const root = document.documentElement;
 const toggle = document.querySelector(".theme-toggle");
-const routeLinks = document.querySelectorAll("[data-route]");
-const views = document.querySelectorAll("[data-view]");
+const beyondLink = document.querySelector("[data-beyond-link]");
+const navLinks = document.querySelectorAll(".nav a, .brand");
+const aboutLink = document.querySelector('.nav a[href="#about"]');
 const savedTheme = localStorage.getItem("theme");
-const defaultView = "about";
 
 if (savedTheme) {
   root.dataset.theme = savedTheme;
@@ -15,40 +15,59 @@ toggle?.addEventListener("click", () => {
   localStorage.setItem("theme", nextTheme);
 });
 
-function setActiveView(viewName, shouldUpdateHistory = true) {
-  const targetView = document.querySelector(`[data-view="${viewName}"]`)
-    ? viewName
-    : defaultView;
+function setBeyondActive(isActive, updateHash = true) {
+  document.body.classList.toggle("show-beyond", isActive);
 
-  views.forEach((view) => {
-    view.classList.toggle("is-active", view.dataset.view === targetView);
+  navLinks.forEach((link) => {
+    link.classList.remove("is-active");
   });
 
-  routeLinks.forEach((link) => {
-    link.classList.toggle("is-active", link.dataset.route === targetView);
-  });
+  (isActive ? beyondLink : aboutLink)?.classList.add("is-active");
 
-  if (shouldUpdateHistory) {
-    history.pushState({ view: targetView }, "", `#${targetView}`);
+  if (updateHash) {
+    history.pushState({ beyond: isActive }, "", isActive ? "#beyond" : "#about");
   }
 
-  window.scrollTo({ top: 0, behavior: shouldUpdateHistory ? "smooth" : "auto" });
-
-  if (!shouldUpdateHistory) {
-    requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "auto" }));
-    window.setTimeout(() => window.scrollTo({ top: 0, behavior: "auto" }), 60);
+  if (isActive || updateHash) {
+    window.scrollTo({ top: 0, behavior: updateHash ? "smooth" : "auto" });
   }
 }
 
-routeLinks.forEach((link) => {
+beyondLink?.addEventListener("click", (event) => {
+  event.preventDefault();
+  setBeyondActive(true);
+});
+
+navLinks.forEach((link) => {
+  if (link === beyondLink) {
+    return;
+  }
+
   link.addEventListener("click", (event) => {
+    if (!document.body.classList.contains("show-beyond")) {
+      return;
+    }
+
     event.preventDefault();
-    setActiveView(link.dataset.route);
+    const targetId = link.getAttribute("href") || "#about";
+    setBeyondActive(false, false);
+    history.pushState({ beyond: false }, "", targetId);
+
+    requestAnimationFrame(() => {
+      document.querySelector(targetId)?.scrollIntoView({ behavior: "smooth" });
+    });
   });
 });
 
 window.addEventListener("popstate", () => {
-  setActiveView(location.hash.replace("#", "") || defaultView, false);
+  const isBeyond = location.hash === "#beyond";
+  setBeyondActive(isBeyond, false);
+
+  if (!isBeyond && location.hash) {
+    requestAnimationFrame(() => {
+      document.querySelector(location.hash)?.scrollIntoView({ behavior: "auto" });
+    });
+  }
 });
 
-setActiveView(location.hash.replace("#", "") || defaultView, false);
+setBeyondActive(location.hash === "#beyond", false);
