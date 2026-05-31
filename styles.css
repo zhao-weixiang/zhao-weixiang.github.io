@@ -126,12 +126,17 @@ main {
   width: 100%;
 }
 
-.view:not(.is-active) {
-  display: none !important;
+.beyond-view {
+  display: none;
 }
 
-.view.is-active {
+body.show-beyond .beyond-view {
+  display: block;
   animation: view-fade 260ms ease both;
+}
+
+body.show-beyond main > :not(.beyond-view) {
+  display: none !important;
 }
 
 @keyframes view-fade {
