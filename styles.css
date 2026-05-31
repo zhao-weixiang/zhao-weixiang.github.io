@@ -92,6 +92,20 @@ a {
   color: var(--text);
 }
 
+.nav a.is-active {
+  color: var(--text);
+}
+
+.nav a.is-active::after {
+  background: var(--accent-2);
+  border-radius: 999px;
+  content: "";
+  display: block;
+  height: 2px;
+  margin-top: 5px;
+  width: 100%;
+}
+
 .theme-toggle {
   align-items: center;
   background: var(--surface);
@@ -110,6 +124,26 @@ main {
   max-width: 1180px;
   padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 72px);
   width: 100%;
+}
+
+.view:not(.is-active) {
+  display: none !important;
+}
+
+.view.is-active {
+  animation: view-fade 260ms ease both;
+}
+
+@keyframes view-fade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero {
@@ -267,6 +301,10 @@ h3 {
   max-width: 780px;
 }
 
+.section-heading h2 {
+  overflow-wrap: anywhere;
+}
+
 .section-heading p:not(.eyebrow) {
   color: var(--muted);
   font-size: 17px;
@@ -402,6 +440,69 @@ h3 {
   text-transform: uppercase;
 }
 
+.beyond-layout {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 0.72fr 1.28fr;
+}
+
+.social-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.social-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  display: block;
+  min-height: 180px;
+  padding: 22px;
+}
+
+.social-card span {
+  color: var(--accent-2);
+  display: block;
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+.social-card strong {
+  display: block;
+  font-size: 24px;
+  line-height: 1.15;
+  margin-bottom: 12px;
+}
+
+.social-card p {
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.gallery-feature {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  margin: 0;
+  overflow: hidden;
+}
+
+.gallery-feature img {
+  aspect-ratio: 16 / 10;
+  display: block;
+  height: auto;
+  object-fit: cover;
+  width: 100%;
+}
+
+.gallery-feature figcaption {
+  color: var(--muted);
+  font-size: 14px;
+  padding: 14px 16px 16px;
+}
+
 .contact {
   align-items: center;
   background: var(--text);
@@ -468,6 +569,7 @@ h3 {
 
   .hero,
   .split,
+  .beyond-layout,
   .contact {
     grid-template-columns: 1fr;
   }
@@ -506,6 +608,10 @@ h3 {
   .hero-copy,
   .subtitle,
   .intro,
+  .section-heading,
+  .beyond-layout,
+  .social-card,
+  .gallery-feature,
   .profile-panel {
     max-width: calc(100vw - 32px);
     width: 100%;
@@ -520,6 +626,18 @@ h3 {
     line-height: 1.35;
   }
 
+  .beyond-view .section-heading,
+  .beyond-layout,
+  .social-card,
+  .gallery-feature {
+    max-width: 340px;
+  }
+
+  .beyond-view h2 {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
   .intro {
     font-size: 16px;
   }
@@ -527,12 +645,14 @@ h3 {
   .nav {
     display: grid;
     gap: 8px 12px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     width: 100%;
   }
 
   .nav a {
     font-size: 13px;
+    min-width: 0;
+    overflow-wrap: anywhere;
   }
 
   .timeline li {

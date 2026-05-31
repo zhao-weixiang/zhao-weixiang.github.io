@@ -12,14 +12,15 @@
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Back to top">赵尉翔</a>
+      <a class="brand" href="#about" data-route="about" aria-label="Back to about">赵尉翔</a>
       <nav class="nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#focus">Focus</a>
-        <a href="#projects">Projects</a>
-        <a href="#education">Education</a>
-        <a href="#notes">Notes</a>
-        <a href="#contact">Contact</a>
+        <a class="is-active" href="#about" data-route="about">About</a>
+        <a href="#focus" data-route="focus">Focus</a>
+        <a href="#projects" data-route="projects">Projects</a>
+        <a href="#education" data-route="education">Education</a>
+        <a href="#notes" data-route="notes">Notes</a>
+        <a href="#beyond" data-route="beyond">Beyond Research</a>
+        <a href="#contact" data-route="contact">Contact</a>
       </nav>
       <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
         <span aria-hidden="true">T</span>
@@ -27,75 +28,77 @@
     </header>
 
     <main id="top">
-      <section class="hero" id="about">
-        <div class="hero-copy">
-          <p class="eyebrow">Personal Website</p>
-          <h1>Weixiang Zhao</h1>
-          <p class="subtitle">
-            Software Engineering Master Student at Northwestern Polytechnical
-            University, China.
-          </p>
-          <p class="intro">
-            I am currently pursuing a Master of Engineering in Computer Software
-            Engineering. My background combines software engineering with an
-            undergraduate foundation in aerospace engineering, and I am building
-            this space to collect my projects, notes, education, and future work.
-          </p>
-          <div class="actions" aria-label="Profile links">
-            <a class="button primary" href="mailto:weixiang_zhao@163.com">Email</a>
-            <a class="button" href="https://github.com/zhao-weixiang">GitHub</a>
-            <a
-              class="button"
-              href="https://www.linkedin.com/in/weixiang-zhao-24a852253/?skipRedirect=true"
-              >LinkedIn</a
-            >
+      <div class="view is-active" id="about" data-view="about">
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">Personal Website</p>
+            <h1>Weixiang Zhao</h1>
+            <p class="subtitle">
+              Software Engineering Master Student at Northwestern Polytechnical
+              University, China.
+            </p>
+            <p class="intro">
+              I am currently pursuing a Master of Engineering in Computer Software
+              Engineering. My background combines software engineering with an
+              undergraduate foundation in aerospace engineering, and I am building
+              this space to collect my projects, notes, education, and future work.
+            </p>
+            <div class="actions" aria-label="Profile links">
+              <a class="button primary" href="mailto:weixiang_zhao@163.com">Email</a>
+              <a class="button" href="https://github.com/zhao-weixiang">GitHub</a>
+              <a
+                class="button"
+                href="https://www.linkedin.com/in/weixiang-zhao-24a852253/?skipRedirect=true"
+                >LinkedIn</a
+              >
+            </div>
           </div>
-        </div>
 
-        <aside class="profile-panel" aria-label="Profile summary">
-          <img
-            class="portrait"
-            src="assets/weixiang-zhao.png"
-            alt="Portrait of Weixiang Zhao"
-            width="320"
-            height="320"
-          />
-          <div class="profile-meta">
-            <p><strong>Name</strong><span>赵尉翔</span></p>
-            <p><strong>Location</strong><span>China</span></p>
-            <p><strong>Status</strong><span>Master Student</span></p>
+          <aside class="profile-panel" aria-label="Profile summary">
+            <img
+              class="portrait"
+              src="assets/weixiang-zhao.png"
+              alt="Portrait of Weixiang Zhao"
+              width="320"
+              height="320"
+            />
+            <div class="profile-meta">
+              <p><strong>Name</strong><span>赵尉翔</span></p>
+              <p><strong>Location</strong><span>China</span></p>
+              <p><strong>Status</strong><span>Master Student</span></p>
+            </div>
+          </aside>
+        </section>
+
+        <section class="section updates" aria-labelledby="updates-title">
+          <div class="section-heading">
+            <p class="eyebrow">Latest</p>
+            <h2 id="updates-title">Updates</h2>
           </div>
-        </aside>
-      </section>
+          <ol class="timeline">
+            <li>
+              <time datetime="2026-05">May 2026</time>
+              <span>Launched this personal website and started organizing my portfolio.</span>
+            </li>
+            <li>
+              <time datetime="2025-09">Sep 2025</time>
+              <span>
+                Began the Master of Engineering program in Computer Software
+                Engineering at Northwestern Polytechnical University.
+              </span>
+            </li>
+            <li>
+              <time datetime="2025-06">Jun 2025</time>
+              <span>
+                Completed the Bachelor of Engineering program at Nanjing University
+                of Aeronautics and Astronautics.
+              </span>
+            </li>
+          </ol>
+        </section>
+      </div>
 
-      <section class="section updates" aria-labelledby="updates-title">
-        <div class="section-heading">
-          <p class="eyebrow">Latest</p>
-          <h2 id="updates-title">Updates</h2>
-        </div>
-        <ol class="timeline">
-          <li>
-            <time datetime="2026-05">May 2026</time>
-            <span>Launched this personal website and started organizing my portfolio.</span>
-          </li>
-          <li>
-            <time datetime="2025-09">Sep 2025</time>
-            <span>
-              Began the Master of Engineering program in Computer Software
-              Engineering at Northwestern Polytechnical University.
-            </span>
-          </li>
-          <li>
-            <time datetime="2025-06">Jun 2025</time>
-            <span>
-              Completed the Bachelor of Engineering program at Nanjing University
-              of Aeronautics and Astronautics.
-            </span>
-          </li>
-        </ol>
-      </section>
-
-      <section class="section" id="focus" aria-labelledby="focus-title">
+      <section class="view section" id="focus" data-view="focus" aria-labelledby="focus-title">
         <div class="section-heading">
           <p class="eyebrow">Direction</p>
           <h2 id="focus-title">Focus Areas</h2>
@@ -136,7 +139,7 @@
         </div>
       </section>
 
-      <section class="section" id="projects" aria-labelledby="projects-title">
+      <section class="view section" id="projects" data-view="projects" aria-labelledby="projects-title">
         <div class="section-heading">
           <p class="eyebrow">Selected Work</p>
           <h2 id="projects-title">Projects</h2>
@@ -161,7 +164,7 @@
         </div>
       </section>
 
-      <section class="section split" id="education" aria-labelledby="education-title">
+      <section class="view section split" id="education" data-view="education" aria-labelledby="education-title">
         <div class="section-heading">
           <p class="eyebrow">Background</p>
           <h2 id="education-title">Education</h2>
@@ -185,7 +188,7 @@
         </div>
       </section>
 
-      <section class="section" id="notes" aria-labelledby="notes-title">
+      <section class="view section" id="notes" data-view="notes" aria-labelledby="notes-title">
         <div class="section-heading">
           <p class="eyebrow">Writing</p>
           <h2 id="notes-title">Notes</h2>
@@ -206,7 +209,48 @@
         </div>
       </section>
 
-      <section class="contact" id="contact" aria-labelledby="contact-title">
+      <section class="view section beyond-view" id="beyond" data-view="beyond" aria-labelledby="beyond-title">
+        <div class="section-heading">
+          <p class="eyebrow">Beyond Research</p>
+          <h2 id="beyond-title">Games, travel, and everyday traces.</h2>
+          <p>
+            This space is for the parts of life that sit outside coursework and
+            engineering: games I enjoy, places I visit, images I like, and social
+            accounts where I keep a more casual presence.
+          </p>
+        </div>
+        <div class="beyond-layout">
+          <div class="social-grid" aria-label="Social accounts">
+            <a class="social-card" href="https://steamcommunity.com/id/zhaoweixiang/">
+              <span>Steam</span>
+              <strong>zhaoweixiang</strong>
+              <p>Games, playtime, and personal favorites.</p>
+            </a>
+            <a
+              class="social-card"
+              href="https://www.xiaohongshu.com/user/profile/60f0e40c000000000101c7b7"
+            >
+              <span>Xiaohongshu</span>
+              <strong>赵尉翔</strong>
+              <p>Travel, snapshots, and daily fragments.</p>
+            </a>
+          </div>
+          <figure class="gallery-feature">
+            <img
+              src="assets/beyond-research-game.webp"
+              alt="Game artwork selected by Weixiang Zhao"
+              width="1600"
+              height="1200"
+            />
+            <figcaption>
+              A first image for this gallery. More travel and game images can be
+              added here later.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="view contact" id="contact" data-view="contact" aria-labelledby="contact-title">
         <div>
           <p class="eyebrow">Contact</p>
           <h2 id="contact-title">Let us connect.</h2>
